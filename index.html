@@ -1,0 +1,3079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kushal Rongali portfolio - AI Engineer and Full Stack Developer specializing in MERN stack, AI APIs, and scalable web applications.">
+    <meta name="theme-color" content="#050508">
+    <title>Kushal Rongali — AI Engineer & Full Stack Developer</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --black: #050508;
+            --white: #f0f0f5;
+            --blue: #0af;
+            --blue-dim: rgba(0, 170, 255, 0.15);
+            --blue-glow: rgba(0, 170, 255, 0.35);
+            --surface: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-muted: rgba(240, 240, 245, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: #050508;
+            color: #f0f0f5;
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom cursor */
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(0, 170, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease, width 0.3s, height 0.3s;
+        }
+
+        a,
+        button,
+        [data-hover] {
+            cursor: none
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 3px;
+        }
+
+        /* Scroll progress */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), #7f5af0);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            padding: 1.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 8, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.35rem;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue)
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 4rem 4rem;
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-image:
+                linear-gradient(rgba(0, 170, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 170, 255, 0.035) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            padding: 0.35rem 0.8rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 170, 255, 0.06);
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--blue);
+            border-radius: 50%;
+            animation: blink 1.5s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.2
+            }
+        }
+
+        .hero-name {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name span {
+            background: linear-gradient(135deg, #ffffff 30%, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typing-wrap {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            min-height: 1.6em;
+        }
+
+        #typed-text {
+            display: inline
+        }
+
+        #cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: var(--blue);
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 0.8s infinite
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: rgba(240, 240, 245, 0.65);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s;
+            border: 1px solid;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #000;
+            border-color: var(--blue);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--blue);
+            box-shadow: 0 0 24px var(--blue-glow)
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--blue);
+            color: var(--blue)
+        }
+
+        /* Avatar */
+        .hero-avatar {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar-ring {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotateRing 20s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .avatar-inner {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 170, 255, 0.2), rgba(127, 90, 240, 0.15));
+            border: 2px solid rgba(0, 170, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotateRing 20s linear infinite reverse;
+            overflow: hidden;
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -0.05em;
+        }
+
+        .avatar-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--blue);
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--blue);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 3rem;
+        }
+
+        .section-title em {
+            font-style: normal;
+            background: linear-gradient(135deg, #fff, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(240, 240, 245, 0.7);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p strong {
+            color: #fff;
+            font-weight: 500
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(0, 170, 255, 0.4);
+            transform: translateY(-3px)
+        }
+
+        .stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 400
+        }
+
+        /* SKILLS — OrbitImages */
+        #skills {
+            background: rgba(255, 255, 255, 0.01);
+            padding: 5rem 0
+        }
+
+        #skills>.inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem
+        }
+
+        .orbit-scene {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .orbit-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none
+        }
+
+        .orbit-item-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            will-change: transform;
+            transform-origin: center center;
+        }
+
+        .orbit-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 72px;
+            height: 72px;
+            background: rgba(5, 5, 8, 0.85);
+            border: 1px solid rgba(0, 170, 255, 0.25);
+            border-radius: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(240, 240, 245, 0.8);
+            letter-spacing: 0.04em;
+            text-align: center;
+            line-height: 1.2;
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.08);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            cursor: default;
+            backdrop-filter: blur(8px);
+        }
+
+        .orbit-badge:hover {
+            border-color: rgba(0, 170, 255, 0.7);
+            box-shadow: 0 0 28px rgba(0, 170, 255, 0.25);
+            color: #fff;
+        }
+
+        .orbit-badge svg {
+            display: block;
+            flex-shrink: 0
+        }
+
+        .orbit-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 170, 255, 0.15), rgba(5, 5, 8, 0.9));
+            border: 1px solid rgba(0, 170, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            text-align: center;
+            line-height: 1.4;
+            z-index: 10;
+            box-shadow: 0 0 40px rgba(0, 170, 255, 0.12);
+        }
+
+        .skills-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .legend-pill {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            border: 1px solid;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .legend-pill:hover {
+            opacity: 1
+        }
+
+        /* PROJECTS — InfiniteMenu */
+        #projects {
+            padding: 6rem 4rem
+        }
+
+        .projects-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 3rem;
+            align-items: start
+        }
+
+        .projects-globe-wrap {
+            position: relative;
+            height: 540px;
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #050508;
+        }
+
+        #infinite-grid-menu-canvas {
+            cursor: grab;
+            width: 100%;
+            height: 100%;
+            display: block;
+            outline: none;
+        }
+
+        #infinite-grid-menu-canvas:active {
+            cursor: grabbing
+        }
+
+        .igm-face-title {
+            user-select: none;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            left: 1.4rem;
+            transform: translateY(-50%);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            max-width: 140px;
+            line-height: 1.2;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+
+        .igm-face-title.active {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0)
+        }
+
+        .igm-face-title.inactive {
+            opacity: 0;
+            transform: translateY(-50%) translateX(-10px)
+        }
+
+        .igm-face-desc {
+            user-select: none;
+            pointer-events: none;
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: rgba(240, 240, 245, 0.45);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.06em;
+            transition: opacity 0.4s;
+            white-space: nowrap;
+        }
+
+        .igm-face-desc.active {
+            opacity: 1
+        }
+
+        .igm-face-desc.inactive {
+            opacity: 0
+        }
+
+        .igm-btn {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 52px;
+            height: 52px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #000;
+            text-decoration: none;
+            border: 3px solid #050508;
+            transition: transform 0.4s, opacity 0.4s, bottom 0.4s;
+            z-index: 20;
+            cursor: none;
+        }
+
+        .igm-btn.active {
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        .igm-btn.inactive {
+            opacity: 0;
+            transform: scale(0);
+            bottom: -60px
+        }
+
+        /* detail panel */
+        .project-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .project-detail-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s, transform 0.4s, border-color 0.3s;
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        .project-detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            position: relative;
+        }
+
+        .project-detail-wrap {
+            position: relative;
+            min-height: 380px
+        }
+
+        .pd-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .pd-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pd-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem
+        }
+
+        .pd-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            background: rgba(0, 170, 255, 0.08);
+            border: 1px solid rgba(0, 170, 255, 0.22);
+            color: var(--blue);
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+        }
+
+        .pd-desc {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: rgba(240, 240, 245, 0.62);
+            margin-bottom: 1.25rem;
+        }
+
+        .pd-features {
+            list-style: none;
+            margin-bottom: 1.5rem
+        }
+
+        .pd-features li {
+            font-size: 0.82rem;
+            color: rgba(240, 240, 245, 0.6);
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .pd-features li::before {
+            content: '›';
+            color: var(--blue);
+            font-size: 1rem;
+            flex-shrink: 0
+        }
+
+        .pd-links {
+            display: flex;
+            gap: 0.75rem
+        }
+
+        .pd-link {
+            flex: 1;
+            text-align: center;
+            padding: 0.6rem;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .pl-demo {
+            background: var(--blue);
+            color: #000;
+            border: 1px solid var(--blue)
+        }
+
+        .pl-demo:hover {
+            background: transparent;
+            color: var(--blue)
+        }
+
+        .pl-gh {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2)
+        }
+
+        .pl-gh:hover {
+            border-color: var(--blue);
+            color: var(--blue)
+        }
+
+        .projects-hint {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .projects-hint::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--text-muted);
+            display: block;
+        }
+
+        .projects-list-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-summary-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.6rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .project-summary-card:hover {
+            border-color: rgba(0, 170, 255, 0.35);
+            transform: translateY(-3px);
+        }
+
+        .project-summary-card .pd-title {
+            font-size: 1.25rem
+        }
+
+        .project-summary-card .pd-desc {
+            margin-bottom: 1rem
+        }
+
+        /* EXPERIENCE */
+        .timeline {
+            position: relative;
+            padding-left: 2rem
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--blue), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .timeline-item:hover {
+            border-color: rgba(0, 170, 255, 0.35)
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.75rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 12px var(--blue-glow);
+        }
+
+        .timeline-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--blue);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: rgba(240, 240, 245, 0.65);
+        }
+
+        /* EDUCATION */
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: border-color 0.3s;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+        }
+
+        .edu-card:hover {
+            border-color: rgba(0, 170, 255, 0.4)
+        }
+
+        .edu-degree {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-uni {
+            color: var(--blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem
+        }
+
+        .edu-dates {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1.5rem
+        }
+
+        .coursework {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem
+        }
+
+        .course-tag {
+            font-size: 0.78rem;
+            padding: 0.3rem 0.75rem;
+            background: rgba(0, 170, 255, 0.06);
+            border: 1px solid rgba(0, 170, 255, 0.18);
+            border-radius: 4px;
+            color: rgba(240, 240, 245, 0.7);
+        }
+
+        .edu-badge {
+            background: linear-gradient(135deg, rgba(0, 170, 255, 0.15), rgba(127, 90, 240, 0.1));
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+            align-self: start;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+
+        .edu-badge .year {
+            font-size: 2rem;
+            color: var(--blue);
+            display: block
+        }
+
+        .edu-badge .year-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.1em;
+            text-transform: uppercase
+        }
+
+        /* ACHIEVEMENTS */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem
+        }
+
+        .achievement-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), #7f5af0);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            border-color: rgba(0, 170, 255, 0.3);
+            transform: translateY(-4px)
+        }
+
+        .achievement-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block
+        }
+
+        .achievement-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.25s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--blue);
+            transform: translateX(4px)
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid rgba(0, 170, 255, 0.25);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem
+        }
+
+        .contact-val {
+            font-size: 0.9rem;
+            font-weight: 500
+        }
+
+        /* Contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.1em;
+            text-transform: uppercase
+        }
+
+        .form-input,
+        .form-textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            resize: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: rgba(0, 170, 255, 0.5)
+        }
+
+        .form-textarea {
+            min-height: 120px
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            max-width: 100%;
+        }
+
+        .footer-quote {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            font-style: italic;
+        }
+
+        .footer-quote strong {
+            color: var(--blue);
+            font-style: normal
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 1rem
+        }
+
+        .footer-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--blue)
+        }
+
+        /* Back to top */
+        #back-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 170, 255, 0.15);
+            border: 1px solid rgba(0, 170, 255, 0.4);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.25s;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 400;
+        }
+
+        #back-top.show {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        #back-top:hover {
+            background: var(--blue);
+            color: #000
+        }
+
+        /* Divider */
+        .section-divider {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 170, 255, 0.2), transparent);
+        }
+
+        /* Floating particles */
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle var(--dur, 15s) var(--delay, 0s) linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0
+            }
+
+            10% {
+                opacity: 0.4
+            }
+
+            90% {
+                opacity: 0.4
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(var(--drift, 30px));
+                opacity: 0
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* GitHub stats */
+        .gh-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem
+        }
+
+        .gh-stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .gh-stat:hover {
+            border-color: rgba(0, 170, 255, 0.35)
+        }
+
+        .gh-stat .num {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue);
+            display: block;
+        }
+
+        .gh-stat .lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase
+        }
+
+        .gh-langs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem
+        }
+
+        .gh-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: rgba(240, 240, 245, 0.7);
+        }
+
+        .lang-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        /* ===== LogoLoop ===== */
+        .logoloop {
+            position: relative;
+            --logoloop-gap: 40px;
+            --logoloop-logoHeight: 36px;
+            --logoloop-fadeColorAuto: #050508;
+        }
+
+        .logoloop--horizontal {
+            width: 100%;
+            overflow: hidden
+        }
+
+        .logoloop--fade::before,
+        .logoloop--fade::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: clamp(40px, 10%, 160px);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .logoloop--fade::before {
+            left: 0;
+            background: linear-gradient(to right, var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .logoloop--fade::after {
+            right: 0;
+            background: linear-gradient(to left, var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .logoloop__track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+            user-select: none;
+            position: relative;
+            z-index: 0;
+        }
+
+        .logoloop__list {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .logoloop__item {
+            flex: 0 0 auto;
+            margin-right: var(--logoloop-gap);
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: rgba(240, 240, 245, 0.45);
+            text-transform: uppercase;
+            transition: color 0.25s;
+            white-space: nowrap;
+        }
+
+        .logoloop__item:last-child {
+            margin-right: var(--logoloop-gap)
+        }
+
+        .logoloop__item svg {
+            flex-shrink: 0;
+            height: var(--logoloop-logoHeight);
+            width: auto;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s;
+            filter: grayscale(1) brightness(0.55);
+        }
+
+        .logoloop--scale-hover .logoloop__item:hover svg {
+            transform: scale(1.15);
+            filter: grayscale(0) brightness(1);
+        }
+
+        .logoloop--scale-hover .logoloop__item:hover {
+            color: rgba(240, 240, 245, 0.9)
+        }
+
+        /* strip wrapper */
+        .tech-strip {
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .logoloop__track {
+                transform: translate3d(0, 0, 0) !important
+            }
+
+            .logoloop__item svg {
+                transition: none !important
+            }
+        }
+
+        /* ===== end LogoLoop ===== */
+
+        @media(max-width:768px) {
+            body {
+                cursor: auto
+            }
+
+            #cursor,
+            #cursor-ring {
+                display: none
+            }
+
+            a,
+            button,
+            [data-hover] {
+                cursor: pointer
+            }
+
+            nav {
+                padding: 1rem 1.5rem
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            section {
+                padding: 4rem 1.5rem
+            }
+
+            #hero {
+                padding: 5rem 1.5rem 3rem
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .avatar-ring {
+                display: none
+            }
+
+            .hero-ctas {
+                justify-content: center
+            }
+
+            .about-grid,
+            .contact-grid,
+            .projects-layout,
+            .projects-list-grid {
+                grid-template-columns: 1fr
+            }
+
+            .projects-globe-wrap {
+                height: 360px
+            }
+
+            .edu-card {
+                grid-template-columns: 1fr
+            }
+
+            .gh-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            footer {
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                text-align: center
+            }
+        }
+
+        @media(pointer:coarse) {
+            body {
+                cursor: auto
+            }
+
+            #cursor,
+            #cursor-ring {
+                display: none
+            }
+
+            a,
+            button,
+            [data-hover] {
+                cursor: pointer
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <div id="progress"></div>
+    <div id="particles"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">KR</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#github">GitHub</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" style="padding:0;max-width:none">
+        <canvas id="light-rays-canvas"
+            style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.85"></canvas>
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-content">
+            <div>
+                <div class="hero-tag">
+                    <span></span>Available for Opportunities
+                </div>
+                <h1 class="hero-name">
+                    <span>Kushal</span><br>Rongali
+                </h1>
+                <div class="typing-wrap">
+                    <span id="typed-text"></span><span id="cursor-blink"></span>
+                </div>
+                <p class="hero-desc">
+                    AI Engineer &amp; Full Stack Developer crafting intelligent, scalable solutions.
+                    Building the future with MERN stack, AI APIs, and production-grade systems.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="./KUSHAL.pdf" download="KUSHAL.pdf" class="btn btn-ghost">Download Resume</a>
+                    <a href="#contact" class="btn btn-ghost">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-ring">
+                    <div class="avatar-dot"></div>
+                    <div class="avatar-inner">KR</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TECH STRIP — LogoLoop -->
+    <div class="tech-strip" aria-label="Technologies I work with">
+        <div class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" id="logoloop-root"
+            style="--logoloop-gap:52px;--logoloop-logoHeight:28px">
+            <div class="logoloop__track" id="logoloop-track"></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade-in">
+        <div class="section-label">01 / About</div>
+        <h2 class="section-title">Who I <em>Am</em></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I'm a <strong>Computer Science student specializing in Artificial Intelligence</strong> at Parul
+                    University,
+                    Vadodara. Passionate about building scalable web applications, AI-powered solutions, and solving
+                    real-world
+                    problems through technology.</p>
+                <p>My interests span <strong>Full Stack Development</strong>, <strong>Artificial Intelligence</strong>,
+                    <strong>Cloud Computing</strong>, and <strong>Software Engineering</strong>. I thrive at the
+                    intersection of
+                    intelligent systems and modern web architecture.
+                </p>
+                <p>When I'm not writing code, I'm grinding LeetCode, exploring open-source projects, or deep-diving into
+                    AI
+                    research papers.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-num" data-target="100">0</span>+
+                    <span class="stat-label">LeetCode Problems</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" data-target="2">0</span>+
+                    <span class="stat-label">Major Projects</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">MERN</span>
+                    <span class="stat-label">Stack Developer</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">AI</span>
+                    <span class="stat-label">Enthusiast</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SKILLS -->
+    <div id="skills" style="width:100%">
+        <div class="inner fade-in">
+            <div class="section-label">02 / Skills</div>
+            <h2 class="section-title">Tech <em>Stack</em></h2>
+            <div class="orbit-scene" id="orbit-scene">
+                <!-- SVG ellipse paths (visible faint guides) -->
+                <svg class="orbit-svg" id="orbit-paths-svg" viewBox="0 0 900 420"
+                    preserveAspectRatio="xMidYMid meet"></svg>
+                <!-- Hub -->
+                <div class="orbit-hub">Tech<br>Stack</div>
+                <!-- Items injected by JS -->
+            </div>
+            <div class="skills-legend" id="skills-legend"></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-in">
+        <div class="section-label">03 / Projects</div>
+        <h2 class="section-title">What I've <em>Built</em></h2>
+        <p class="projects-hint">Drag the globe to explore — each face is a project</p>
+        <div class="projects-layout">
+
+            <!-- InfiniteMenu Globe -->
+            <div class="projects-globe-wrap">
+                <canvas id="infinite-grid-menu-canvas"></canvas>
+                <h2 id="igm-title" class="igm-face-title inactive"></h2>
+                <p id="igm-desc" class="igm-face-desc inactive"></p>
+                <a id="igm-btn" href="https://github.com/kushalrongali" target="_blank" rel="noopener noreferrer"
+                    class="igm-btn inactive" aria-label="Open project">&#x2197;</a>
+            </div>
+
+        </div>
+
+        <div class="projects-list-grid" aria-label="All portfolio projects">
+            <article class="project-summary-card">
+                <div class="pd-label">Project 01</div>
+                <div class="pd-title">Real-Time Collaborative Coding Platform</div>
+                <div class="pd-tags">
+                    <span class="pd-tag">MongoDB</span>
+                    <span class="pd-tag">Express.js</span>
+                    <span class="pd-tag">React.js</span>
+                    <span class="pd-tag">Node.js</span>
+                    <span class="pd-tag">WebSockets</span>
+                    <span class="pd-tag">Socket.io</span>
+                </div>
+                <p class="pd-desc">Engineered a full-stack real-time collaborative coding platform using the MERN stack
+                    and
+                    WebSockets, enabling multiple users to write and execute code simultaneously in shared sessions.</p>
+                <ul class="pd-features">
+                    <li>Architected isolated execution environments per user session — secure, independent code runs
+                        with zero
+                        cross-session data leakage</li>
+                    <li>Room-based collaboration with host controls, access management &amp; live participant tracking
+                        for
+                        structured pair-programming workflows</li>
+                    <li>Optimised real-time code synchronisation achieving low-latency bidirectional communication,
+                        keeping editor
+                        state consistent across all connected clients under concurrent load</li>
+                </ul>
+                <div class="pd-links">
+                    <a href="https://codesuu.tech" target="_blank" rel="noopener noreferrer"
+                        class="pd-link pl-demo">Project Link</a>
+                    <a href="https://github.com/kushalrongali/codesuu.git" target="_blank" rel="noopener noreferrer"
+                        class="pd-link pl-gh">GitHub</a>
+                </div>
+            </article>
+
+            <article class="project-summary-card">
+                <div class="pd-label">Project 02</div>
+                <div class="pd-title">SkillSense AI</div>
+                <div class="pd-tags">
+                    <span class="pd-tag">React</span>
+                    <span class="pd-tag">TypeScript</span>
+                    <span class="pd-tag">Node.js</span>
+                    <span class="pd-tag">Express</span>
+                    <span class="pd-tag">MongoDB</span>
+                    <span class="pd-tag">OpenAI API</span>
+                    <span class="pd-tag">Docker</span>
+                </div>
+                <p class="pd-desc">Production-grade, multi-role SaaS platform (Student / University / Recruiter) built
+                    with a
+                    monorepo MERN stack — React + TypeScript frontend served by a single Express backend deployed on
+                    Render.</p>
+                <ul class="pd-features">
+                    <li>Integrated OpenAI/Groq API for AI mock interviews with rubric-based scoring across 6 dimensions
+                        (Technical
+                        Depth, Problem-Solving, Communication, etc.) and automated resume parsing from PDFs</li>
+                    <li>Built GitHub code analysis engine fetching repo metadata, commit history &amp; language
+                        distribution to
+                        generate an AI Engineering Score; integrated LeetCode stats scraper for holistic Placement
+                        Readiness scoring
+                    </li>
+                    <li>Dual-token JWT auth (15-min access + 7-day refresh), role-based access control across 3 roles,
+                        rate-limited REST API (100 req/15 min), and Helmet security headers for production hardening
+                    </li>
+                    <li>Designed 18 Mongoose schemas covering candidate pipelines, interview scheduling, skill
+                        passports, AI
+                        roadmaps, and university cohort analytics with batch CSV onboarding for institutional users</li>
+                </ul>
+                <div class="pd-links">
+                    <a href="https://skillsense.kushalrongali.online" target="_blank" rel="noopener noreferrer"
+                        class="pd-link pl-demo">Project Link</a>
+                    <a href="https://github.com/kushalrongali/SkillSense-AI.git" target="_blank" rel="noopener noreferrer"
+                        class="pd-link pl-gh">GitHub</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="fade-in">
+        <div class="section-label">04 / Experience</div>
+        <h2 class="section-title">Where I've <em>Worked</em></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Apr 2026 · Remote</div>
+                <div class="timeline-role">Technology Job Simulation</div>
+                <div class="timeline-company">Deloitte · via Forage</div>
+                <div class="timeline-desc">
+                    Completed a real-world simulation of Deloitte's technology consulting workflows, applying skills in
+                    data
+                    analysis, coding, and problem-solving to business scenarios. Gained hands-on exposure to
+                    enterprise-grade
+                    development practices including documentation, code review conventions, and structured project
+                    delivery.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- EDUCATION -->
+    <section id="education" class="fade-in">
+        <div class="section-label">05 / Education</div>
+        <h2 class="section-title">Where I <em>Study</em></h2>
+        <div class="edu-card">
+            <div>
+                <div class="edu-degree">B.Tech. Computer Science — Artificial Intelligence</div>
+                <div class="edu-uni">Parul University · Vadodara, Gujarat</div>
+                <div class="edu-dates">Sep 2023 → May 2027</div>
+                <div class="coursework">
+                    <span class="course-tag">Data Structures &amp; Algorithms</span>
+                    <span class="course-tag">Artificial Intelligence</span>
+                    <span class="course-tag">Machine Learning</span>
+                    <span class="course-tag">Database Management</span>
+                    <span class="course-tag">Operating Systems</span>
+                    <span class="course-tag">Computer Networks</span>
+                </div>
+            </div>
+            <div class="edu-badge">
+                <span class="year">2027</span>
+                <span class="year-label">Expected Grad</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="fade-in">
+        <div class="section-label">06 / Achievements</div>
+        <h2 class="section-title">What I've <em>Earned</em></h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <span class="achievement-icon">🏆</span>
+                <div class="achievement-title">100+ LeetCode Problems</div>
+                <div class="achievement-desc">Active competitive programmer with strong DSA foundations in arrays,
+                    linked lists,
+                    trees, and recursion.</div>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-icon">⚡</span>
+                <div class="achievement-title">Active Contest Participant</div>
+                <div class="achievement-desc">Regular participant in coding contests, continuously honing algorithmic
+                    problem-solving skills.</div>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-icon">🎯</span>
+                <div class="achievement-title">Deloitte Tech Simulation</div>
+                <div class="achievement-desc">Completed Deloitte's Technology Job Simulation on Forage — April 2026,
+                    focusing on
+                    consulting workflows.</div>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-icon">🤖</span>
+                <div class="achievement-title">Generative AI Certification</div>
+                <div class="achievement-desc">Infosys Springboard — Generative AI for All certification, covering modern
+                    AI and
+                    LLM fundamentals.</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- GITHUB -->
+    <section id="github" class="fade-in">
+        <div class="section-label">07 / GitHub</div>
+        <h2 class="section-title">Open <em>Source</em></h2>
+        <div class="gh-grid">
+            <div class="gh-stat">
+                <span class="num" id="gh-repos">—</span>
+                <span class="lbl">Repositories</span>
+            </div>
+            <div class="gh-stat">
+                <span class="num" id="gh-stars">—</span>
+                <span class="lbl">Stars</span>
+            </div>
+            <div class="gh-stat">
+                <span class="num" id="gh-followers">—</span>
+                <span class="lbl">Followers</span>
+            </div>
+            <div class="gh-stat">
+                <span class="num" id="gh-following">—</span>
+                <span class="lbl">Following</span>
+            </div>
+        </div>
+        <div class="gh-langs" id="gh-langs">
+            <span class="gh-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+            <span class="gh-lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+            <span class="gh-lang"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+            <span class="gh-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+            <span class="gh-lang"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+            <span class="gh-lang"><span class="lang-dot" style="background:#264de4"></span>CSS</span>
+        </div>
+        <div style="margin-top:1.5rem">
+            <a href="https://github.com/kushalrongali" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                View GitHub Profile →
+            </a>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+        <div class="section-label">08 / Contact</div>
+        <h2 class="section-title">Let's <em>Connect</em></h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <a href="mailto:kushalrongali8@gmail.com" class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-val">kushalrongali8@gmail.com</div>
+                    </div>
+                </a>
+                <a href="https://linkedin.com/in/kushalrongali" target="_blank" rel="noopener noreferrer"
+                    class="contact-item">
+                    <div class="contact-icon">in</div>
+                    <div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-val">linkedin.com/in/kushalrongali</div>
+                    </div>
+                </a>
+                <a href="https://github.com/kushalrongali" target="_blank" rel="noopener noreferrer"
+                    class="contact-item">
+                    <div class="contact-icon">⌥</div>
+                    <div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-val">github.com/kushalrongali</div>
+                    </div>
+                </a>
+                <a href="tel:+918520834165" class="contact-item">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-val">+91 85208 34165</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <form class="contact-form" onsubmit="handleContact(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="cf-name">Name</label>
+                        <input type="text" class="form-input" placeholder="Your name" id="cf-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="cf-email">Email</label>
+                        <input type="email" class="form-input" placeholder="your@email.com" id="cf-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="cf-msg">Message</label>
+                        <textarea class="form-textarea" placeholder="Let's work together..." id="cf-msg"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div id="cf-status" style="font-size:0.82rem;color:var(--blue);display:none;margin-top:0.5rem">
+                        Opening your
+                        email app...</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-quote">
+            "<strong>Building intelligent solutions today</strong> for a smarter tomorrow."
+        </div>
+        <div class="footer-right">
+            <span style="font-size:0.75rem;color:var(--text-muted);font-family:'Space Mono',monospace">© 2026 Kushal
+                Rongali</span>
+        </div>
+    </footer>
+
+    <a href="#hero" id="back-top">↑</a>
+
+    <!-- gl-matrix CDN (required by InfiniteMenu) -->
+    <script src="https://cdn.jsdelivr.net/npm/gl-matrix@3.4.3/gl-matrix-min.js"></script>
+
+    <!-- ============================================================
+     InfiniteMenu — WebGL sphere project showcase
+     ============================================================ -->
+    <script>
+        (function initInfiniteMenu() {
+
+            const { mat4, quat, vec2, vec3 } = glMatrix;
+
+            /* ---- shaders ---- */
+            const discVertShaderSource = `#version 300 es
+uniform mat4 uWorldMatrix;
+uniform mat4 uViewMatrix;
+uniform mat4 uProjectionMatrix;
+uniform vec3 uCameraPosition;
+uniform vec4 uRotationAxisVelocity;
+in vec3 aModelPosition;
+in vec3 aModelNormal;
+in vec2 aModelUvs;
+in mat4 aInstanceMatrix;
+out vec2 vUvs;
+out float vAlpha;
+flat out int vInstanceId;
+#define PI 3.141593
+void main() {
+  vec4 worldPosition = uWorldMatrix * aInstanceMatrix * vec4(aModelPosition, 1.);
+  vec3 centerPos = (uWorldMatrix * aInstanceMatrix * vec4(0., 0., 0., 1.)).xyz;
+  float radius = length(centerPos.xyz);
+  if (gl_VertexID > 0) {
+    vec3 rotationAxis = uRotationAxisVelocity.xyz;
+    float rotationVelocity = min(.15, uRotationAxisVelocity.w * 15.);
+    vec3 stretchDir = normalize(cross(centerPos, rotationAxis));
+    vec3 relativeVertexPos = normalize(worldPosition.xyz - centerPos);
+    float strength = dot(stretchDir, relativeVertexPos);
+    float invAbsStrength = min(0., abs(strength) - 1.);
+    strength = rotationVelocity * sign(strength) * abs(invAbsStrength * invAbsStrength * invAbsStrength + 1.);
+    worldPosition.xyz += stretchDir * strength;
+  }
+  worldPosition.xyz = radius * normalize(worldPosition.xyz);
+  gl_Position = uProjectionMatrix * uViewMatrix * worldPosition;
+  vAlpha = smoothstep(0.5, 1., normalize(worldPosition.xyz).z) * .9 + .1;
+  vUvs = aModelUvs;
+  vInstanceId = gl_InstanceID;
+}`;
+
+            const discFragShaderSource = `#version 300 es
+precision highp float;
+uniform sampler2D uTex;
+uniform int uItemCount;
+uniform int uAtlasSize;
+out vec4 outColor;
+in vec2 vUvs;
+in float vAlpha;
+flat in int vInstanceId;
+void main() {
+  int itemIndex = vInstanceId % uItemCount;
+  int cellsPerRow = uAtlasSize;
+  int cellX = itemIndex % cellsPerRow;
+  int cellY = itemIndex / cellsPerRow;
+  vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
+  vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
+  ivec2 texSize = textureSize(uTex, 0);
+  float imageAspect = float(texSize.x) / float(texSize.y);
+  float containerAspect = 1.0;
+  float scale = max(imageAspect / containerAspect, containerAspect / imageAspect);
+  vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
+  st = (st - 0.5) * scale + 0.5;
+  st = clamp(st, 0.0, 1.0);
+  st = st * cellSize + cellOffset;
+  outColor = texture(uTex, st);
+  outColor.a *= vAlpha;
+}`;
+
+            class Face { constructor(a, b, c) { this.a = a; this.b = b; this.c = c; } }
+            class Vertex {
+                constructor(x, y, z) {
+                    this.position = vec3.fromValues(x, y, z);
+                    this.normal = vec3.create();
+                    this.uv = vec2.create();
+                }
+            }
+            class Geometry {
+                constructor() { this.vertices = []; this.faces = []; }
+                addVertex(...args) { for (let i = 0; i < args.length; i += 3)this.vertices.push(new Vertex(args[i], args[i + 1], args[i + 2])); return this; }
+                addFace(...args) { for (let i = 0; i < args.length; i += 3)this.faces.push(new Face(args[i], args[i + 1], args[i + 2])); return this; }
+                get lastVertex() { return this.vertices[this.vertices.length - 1]; }
+                subdivide(divisions = 1) {
+                    const midPointCache = {}; let f = this.faces;
+                    for (let div = 0; div < divisions; ++div) {
+                        const newFaces = new Array(f.length * 4);
+                        f.forEach((face, ndx) => {
+                            const mAB = this.getMidPoint(face.a, face.b, midPointCache);
+                            const mBC = this.getMidPoint(face.b, face.c, midPointCache);
+                            const mCA = this.getMidPoint(face.c, face.a, midPointCache);
+                            const i = ndx * 4;
+                            newFaces[i + 0] = new Face(face.a, mAB, mCA); newFaces[i + 1] = new Face(face.b, mBC, mAB);
+                            newFaces[i + 2] = new Face(face.c, mCA, mBC); newFaces[i + 3] = new Face(mAB, mBC, mCA);
+                        }); f = newFaces;
+                    }
+                    this.faces = f; return this;
+                }
+                spherize(radius = 1) { this.vertices.forEach(v => { vec3.normalize(v.normal, v.position); vec3.scale(v.position, v.normal, radius); }); return this; }
+                get data() { return { vertices: this.vertexData, indices: this.indexData, normals: this.normalData, uvs: this.uvData }; }
+                get vertexData() { return new Float32Array(this.vertices.flatMap(v => Array.from(v.position))); }
+                get normalData() { return new Float32Array(this.vertices.flatMap(v => Array.from(v.normal))); }
+                get uvData() { return new Float32Array(this.vertices.flatMap(v => Array.from(v.uv))); }
+                get indexData() { return new Uint16Array(this.faces.flatMap(f => [f.a, f.b, f.c])); }
+                getMidPoint(ndxA, ndxB, cache) {
+                    const cacheKey = ndxA < ndxB ? `k_${ndxB}_${ndxA}` : `k_${ndxA}_${ndxB}`;
+                    if (Object.prototype.hasOwnProperty.call(cache, cacheKey)) return cache[cacheKey];
+                    const a = this.vertices[ndxA].position, b = this.vertices[ndxB].position;
+                    const ndx = this.vertices.length; cache[cacheKey] = ndx;
+                    this.addVertex((a[0] + b[0]) * .5, (a[1] + b[1]) * .5, (a[2] + b[2]) * .5); return ndx;
+                }
+            }
+            class IcosahedronGeometry extends Geometry {
+                constructor() {
+                    super(); const t = Math.sqrt(5) * .5 + .5;
+                    this.addVertex(-1, t, 0, 1, t, 0, -1, -t, 0, 1, -t, 0, 0, -1, t, 0, 1, t, 0, -1, -t, 0, 1, -t, t, 0, -1, t, 0, 1, -t, 0, -1, -t, 0, 1)
+                        .addFace(0, 11, 5, 0, 5, 1, 0, 1, 7, 0, 7, 10, 0, 10, 11, 1, 5, 9, 5, 11, 4, 11, 10, 2, 10, 7, 6, 7, 1, 8, 3, 9, 4, 3, 4, 2, 3, 2, 6, 3, 6, 8, 3, 8, 9, 4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1);
+                }
+            }
+            class DiscGeometry extends Geometry {
+                constructor(steps = 4, radius = 1) {
+                    super(); steps = Math.max(4, steps); const alpha = (2 * Math.PI) / steps;
+                    this.addVertex(0, 0, 0); this.lastVertex.uv[0] = .5; this.lastVertex.uv[1] = .5;
+                    for (let i = 0; i < steps; ++i) {
+                        const x = Math.cos(alpha * i), y = Math.sin(alpha * i);
+                        this.addVertex(radius * x, radius * y, 0);
+                        this.lastVertex.uv[0] = x * .5 + .5; this.lastVertex.uv[1] = y * .5 + .5;
+                        if (i > 0) this.addFace(0, i, i + 1);
+                    }
+                    this.addFace(0, steps, 1);
+                }
+            }
+
+            function createShader(gl, type, source) {
+                const s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s);
+                if (gl.getShaderParameter(s, gl.COMPILE_STATUS)) return s;
+                console.error(gl.getShaderInfoLog(s)); gl.deleteShader(s); return null;
+            }
+            function createProgram(gl, shaderSources, tfv, attribLocs) {
+                const p = gl.createProgram();
+                [gl.VERTEX_SHADER, gl.FRAGMENT_SHADER].forEach((type, ndx) => { const s = createShader(gl, type, shaderSources[ndx]); if (s) gl.attachShader(p, s); });
+                if (tfv) gl.transformFeedbackVaryings(p, tfv, gl.SEPARATE_ATTRIBS);
+                if (attribLocs) for (const a in attribLocs) gl.bindAttribLocation(p, attribLocs[a], a);
+                gl.linkProgram(p);
+                if (gl.getProgramParameter(p, gl.LINK_STATUS)) return p;
+                console.error(gl.getProgramInfoLog(p)); gl.deleteProgram(p); return null;
+            }
+            function makeVertexArray(gl, bufLocNumElmPairs, indices) {
+                const va = gl.createVertexArray(); gl.bindVertexArray(va);
+                for (const [buf, loc, num] of bufLocNumElmPairs) {
+                    if (loc === -1) continue;
+                    gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.enableVertexAttribArray(loc);
+                    gl.vertexAttribPointer(loc, num, gl.FLOAT, false, 0, 0);
+                }
+                if (indices) { const ib = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW); }
+                gl.bindVertexArray(null); return va;
+            }
+            function resizeCanvasToDisplaySize(canvas) {
+                const dpr = Math.min(2, window.devicePixelRatio);
+                const dw = Math.round(canvas.clientWidth * dpr), dh = Math.round(canvas.clientHeight * dpr);
+                if (canvas.width !== dw || canvas.height !== dh) { canvas.width = dw; canvas.height = dh; return true; }
+                return false;
+            }
+            function makeBuffer(gl, sizeOrData, usage) {
+                const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                gl.bufferData(gl.ARRAY_BUFFER, sizeOrData, usage); gl.bindBuffer(gl.ARRAY_BUFFER, null); return buf;
+            }
+            function createAndSetupTexture(gl, minFilter, magFilter, wrapS, wrapT) {
+                const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapS);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapT);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, minFilter);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, magFilter);
+                return t;
+            }
+
+            class ArcballControl {
+                isPointerDown = false; orientation = quat.create(); pointerRotation = quat.create();
+                rotationVelocity = 0; rotationAxis = vec3.fromValues(1, 0, 0);
+                snapDirection = vec3.fromValues(0, 0, -1); snapTargetDirection;
+                EPSILON = 0.1; IDENTITY_QUAT = quat.create();
+                constructor(canvas, updateCallback) {
+                    this.canvas = canvas; this.updateCallback = updateCallback || (() => null);
+                    this.pointerPos = vec2.create(); this.previousPointerPos = vec2.create();
+                    this._rotationVelocity = 0; this._combinedQuat = quat.create();
+                    canvas.addEventListener('pointerdown', e => { vec2.set(this.pointerPos, e.clientX, e.clientY); vec2.copy(this.previousPointerPos, this.pointerPos); this.isPointerDown = true; });
+                    canvas.addEventListener('pointerup', () => { this.isPointerDown = false; });
+                    canvas.addEventListener('pointerleave', () => { this.isPointerDown = false; });
+                    canvas.addEventListener('pointermove', e => { if (this.isPointerDown) vec2.set(this.pointerPos, e.clientX, e.clientY); });
+                    canvas.style.touchAction = 'none';
+                }
+                update(deltaTime, targetFrameDuration = 16) {
+                    const ts = deltaTime / targetFrameDuration + 0.00001; let af = ts;
+                    let snapRotation = quat.create();
+                    if (this.isPointerDown) {
+                        const INTENSITY = 0.3 * ts, AA = 5 / ts;
+                        const mid = vec2.sub(vec2.create(), this.pointerPos, this.previousPointerPos);
+                        vec2.scale(mid, mid, INTENSITY);
+                        if (vec2.sqrLen(mid) > this.EPSILON) {
+                            vec2.add(mid, this.previousPointerPos, mid);
+                            const p = this.#project(mid), q = this.#project(this.previousPointerPos);
+                            const a = vec3.normalize(vec3.create(), p), b = vec3.normalize(vec3.create(), q);
+                            vec2.copy(this.previousPointerPos, mid);
+                            af *= AA; this.quatFromVectors(a, b, this.pointerRotation, af);
+                        } else { quat.slerp(this.pointerRotation, this.pointerRotation, this.IDENTITY_QUAT, INTENSITY); }
+                    } else {
+                        quat.slerp(this.pointerRotation, this.pointerRotation, this.IDENTITY_QUAT, 0.1 * ts);
+                        if (this.snapTargetDirection) {
+                            const SI = 0.2, a = this.snapTargetDirection, b = this.snapDirection;
+                            const sqrDist = vec3.squaredDistance(a, b), df = Math.max(0.1, 1 - sqrDist * 10);
+                            af *= SI * df; this.quatFromVectors(a, b, snapRotation, af);
+                        }
+                    }
+                    const combinedQuat = quat.multiply(quat.create(), snapRotation, this.pointerRotation);
+                    this.orientation = quat.multiply(quat.create(), combinedQuat, this.orientation);
+                    quat.normalize(this.orientation, this.orientation);
+                    const RI = 0.8 * ts; quat.slerp(this._combinedQuat, this._combinedQuat, combinedQuat, RI);
+                    quat.normalize(this._combinedQuat, this._combinedQuat);
+                    const rad = Math.acos(this._combinedQuat[3]) * 2.0, s = Math.sin(rad / 2.0);
+                    let rv = 0;
+                    if (s > 0.000001) { rv = rad / (2 * Math.PI); this.rotationAxis[0] = this._combinedQuat[0] / s; this.rotationAxis[1] = this._combinedQuat[1] / s; this.rotationAxis[2] = this._combinedQuat[2] / s; }
+                    const RVI = 0.5 * ts; this._rotationVelocity += (rv - this._rotationVelocity) * RVI;
+                    this.rotationVelocity = this._rotationVelocity / ts;
+                    this.updateCallback(deltaTime);
+                }
+                quatFromVectors(a, b, out, af = 1) {
+                    const axis = vec3.cross(vec3.create(), a, b); vec3.normalize(axis, axis);
+                    const d = Math.max(-1, Math.min(1, vec3.dot(a, b))); const angle = Math.acos(d) * af;
+                    quat.setAxisAngle(out, axis, angle); return { q: out, axis, angle };
+                }
+                #project(pos) {
+                    const r = 2, w = this.canvas.clientWidth, h = this.canvas.clientHeight, s = Math.max(w, h) - 1;
+                    const x = (2 * pos[0] - w - 1) / s, y = (2 * pos[1] - h - 1) / s; let z = 0;
+                    const xySq = x * x + y * y, rSq = r * r;
+                    z = xySq <= rSq / 2.0 ? Math.sqrt(rSq - xySq) : rSq / Math.sqrt(xySq);
+                    return vec3.fromValues(-x, y, z);
+                }
+            }
+
+            class InfiniteGridMenu {
+                TARGET_FRAME_DURATION = 1000 / 60; SPHERE_RADIUS = 2;
+                #time = 0; #deltaTime = 0; #deltaFrames = 0; #frames = 0;
+                camera = { matrix: mat4.create(), near: 0.1, far: 40, fov: Math.PI / 4, aspect: 1, position: vec3.fromValues(0, 0, 3), up: vec3.fromValues(0, 1, 0), matrices: { view: mat4.create(), projection: mat4.create(), inversProjection: mat4.create() } };
+                nearestVertexIndex = null; smoothRotationVelocity = 0; scaleFactor = 1.0; movementActive = false;
+                constructor(canvas, items, onActiveItemChange, onMovementChange, onInit = null, scale = 1.0) {
+                    this.canvas = canvas; this.items = items || [];
+                    this.onActiveItemChange = onActiveItemChange || (() => { });
+                    this.onMovementChange = onMovementChange || (() => { });
+                    this.scaleFactor = scale; this.camera.position[2] = 3 * scale;
+                    this.#init(onInit);
+                }
+                resize() {
+                    this.viewportSize = vec2.set(this.viewportSize || vec2.create(), this.canvas.clientWidth, this.canvas.clientHeight);
+                    const gl = this.gl, needsResize = resizeCanvasToDisplaySize(gl.canvas);
+                    if (needsResize) gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+                    this.#updateProjectionMatrix(gl);
+                }
+                run(time = 0) {
+                    this.#deltaTime = Math.min(32, time - this.#time); this.#time = time;
+                    this.#deltaFrames = this.#deltaTime / this.TARGET_FRAME_DURATION; this.#frames += this.#deltaFrames;
+                    this.#animate(this.#deltaTime); this.#render();
+                    requestAnimationFrame(t => this.run(t));
+                }
+                #init(onInit) {
+                    this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: true });
+                    const gl = this.gl; if (!gl) { console.error('No WebGL2'); return; }
+                    this.viewportSize = vec2.fromValues(this.canvas.clientWidth, this.canvas.clientHeight);
+                    this.drawBufferSize = vec2.clone(this.viewportSize);
+                    this.discProgram = createProgram(gl, [discVertShaderSource, discFragShaderSource], null, { aModelPosition: 0, aModelNormal: 1, aModelUvs: 2, aInstanceMatrix: 3 });
+                    this.discLocations = {
+                        aModelPosition: gl.getAttribLocation(this.discProgram, 'aModelPosition'),
+                        aModelUvs: gl.getAttribLocation(this.discProgram, 'aModelUvs'),
+                        aInstanceMatrix: gl.getAttribLocation(this.discProgram, 'aInstanceMatrix'),
+                        uWorldMatrix: gl.getUniformLocation(this.discProgram, 'uWorldMatrix'),
+                        uViewMatrix: gl.getUniformLocation(this.discProgram, 'uViewMatrix'),
+                        uProjectionMatrix: gl.getUniformLocation(this.discProgram, 'uProjectionMatrix'),
+                        uCameraPosition: gl.getUniformLocation(this.discProgram, 'uCameraPosition'),
+                        uScaleFactor: gl.getUniformLocation(this.discProgram, 'uScaleFactor'),
+                        uRotationAxisVelocity: gl.getUniformLocation(this.discProgram, 'uRotationAxisVelocity'),
+                        uTex: gl.getUniformLocation(this.discProgram, 'uTex'),
+                        uFrames: gl.getUniformLocation(this.discProgram, 'uFrames'),
+                        uItemCount: gl.getUniformLocation(this.discProgram, 'uItemCount'),
+                        uAtlasSize: gl.getUniformLocation(this.discProgram, 'uAtlasSize')
+                    };
+                    this.discGeo = new DiscGeometry(56, 1); this.discBuffers = this.discGeo.data;
+                    this.discVAO = makeVertexArray(gl, [[makeBuffer(gl, this.discBuffers.vertices, gl.STATIC_DRAW), this.discLocations.aModelPosition, 3], [makeBuffer(gl, this.discBuffers.uvs, gl.STATIC_DRAW), this.discLocations.aModelUvs, 2]], this.discBuffers.indices);
+                    this.icoGeo = new IcosahedronGeometry(); this.icoGeo.subdivide(1).spherize(this.SPHERE_RADIUS);
+                    this.instancePositions = this.icoGeo.vertices.map(v => v.position);
+                    this.DISC_INSTANCE_COUNT = this.icoGeo.vertices.length;
+                    this.#initDiscInstances(this.DISC_INSTANCE_COUNT);
+                    this.worldMatrix = mat4.create(); this.#initTexture();
+                    this.control = new ArcballControl(this.canvas, deltaTime => this.#onControlUpdate(deltaTime));
+                    this.#updateCameraMatrix(); this.#updateProjectionMatrix(gl); this.resize();
+                    if (onInit) onInit(this);
+                }
+                #initTexture() {
+                    const gl = this.gl;
+                    this.tex = createAndSetupTexture(gl, gl.LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+                    const itemCount = Math.max(1, this.items.length);
+                    this.atlasSize = Math.ceil(Math.sqrt(itemCount));
+                    const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d'), cellSize = 512;
+                    canvas.width = this.atlasSize * cellSize; canvas.height = this.atlasSize * cellSize;
+                    Promise.all(this.items.map(item => new Promise(resolve => {
+                        const img = new Image(); img.crossOrigin = 'anonymous';
+                        img.onload = () => resolve(img); img.onerror = () => resolve(null); img.src = item.image;
+                    }))).then(images => {
+                        images.forEach((img, i) => {
+                            if (!img) return;
+                            const x = (i % this.atlasSize) * cellSize, y = Math.floor(i / this.atlasSize) * cellSize;
+                            ctx.drawImage(img, x, y, cellSize, cellSize);
+                        });
+                        gl.bindTexture(gl.TEXTURE_2D, this.tex);
+                        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+                        gl.generateMipmap(gl.TEXTURE_2D);
+                    });
+                }
+                #initDiscInstances(count) {
+                    const gl = this.gl;
+                    this.discInstances = { matricesArray: new Float32Array(count * 16), matrices: [], buffer: gl.createBuffer() };
+                    for (let i = 0; i < count; ++i) {
+                        const arr = new Float32Array(this.discInstances.matricesArray.buffer, i * 16 * 4, 16);
+                        arr.set(mat4.create()); this.discInstances.matrices.push(arr);
+                    }
+                    gl.bindVertexArray(this.discVAO); gl.bindBuffer(gl.ARRAY_BUFFER, this.discInstances.buffer);
+                    gl.bufferData(gl.ARRAY_BUFFER, this.discInstances.matricesArray.byteLength, gl.DYNAMIC_DRAW);
+                    const bytesPerMatrix = 16 * 4;
+                    for (let j = 0; j < 4; ++j) {
+                        const loc = this.discLocations.aInstanceMatrix + j;
+                        gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 4, gl.FLOAT, false, bytesPerMatrix, j * 4 * 4);
+                        gl.vertexAttribDivisor(loc, 1);
+                    }
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null); gl.bindVertexArray(null);
+                }
+                #animate(deltaTime) {
+                    const gl = this.gl; this.control.update(deltaTime, this.TARGET_FRAME_DURATION);
+                    const positions = this.instancePositions.map(p => vec3.transformQuat(vec3.create(), p, this.control.orientation));
+                    const scale = 0.25, SI = 0.6;
+                    positions.forEach((p, ndx) => {
+                        const s = (Math.abs(p[2]) / this.SPHERE_RADIUS) * SI + (1 - SI);
+                        const fs = s * scale; const m = mat4.create();
+                        mat4.multiply(m, m, mat4.fromTranslation(mat4.create(), vec3.negate(vec3.create(), p)));
+                        mat4.multiply(m, m, mat4.targetTo(mat4.create(), [0, 0, 0], p, [0, 1, 0]));
+                        mat4.multiply(m, m, mat4.fromScaling(mat4.create(), [fs, fs, fs]));
+                        mat4.multiply(m, m, mat4.fromTranslation(mat4.create(), [0, 0, -this.SPHERE_RADIUS]));
+                        mat4.copy(this.discInstances.matrices[ndx], m);
+                    });
+                    gl.bindBuffer(gl.ARRAY_BUFFER, this.discInstances.buffer);
+                    gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.discInstances.matricesArray);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                    this.smoothRotationVelocity = this.control.rotationVelocity;
+                }
+                #render() {
+                    const gl = this.gl; gl.useProgram(this.discProgram);
+                    gl.enable(gl.CULL_FACE); gl.enable(gl.DEPTH_TEST);
+                    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+                    gl.uniformMatrix4fv(this.discLocations.uWorldMatrix, false, this.worldMatrix);
+                    gl.uniformMatrix4fv(this.discLocations.uViewMatrix, false, this.camera.matrices.view);
+                    gl.uniformMatrix4fv(this.discLocations.uProjectionMatrix, false, this.camera.matrices.projection);
+                    gl.uniform3f(this.discLocations.uCameraPosition, this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+                    gl.uniform4f(this.discLocations.uRotationAxisVelocity, this.control.rotationAxis[0], this.control.rotationAxis[1], this.control.rotationAxis[2], this.smoothRotationVelocity * 1.1);
+                    gl.uniform1i(this.discLocations.uItemCount, this.items.length);
+                    gl.uniform1i(this.discLocations.uAtlasSize, this.atlasSize);
+                    gl.uniform1f(this.discLocations.uFrames, this.#frames);
+                    gl.uniform1f(this.discLocations.uScaleFactor, this.scaleFactor);
+                    gl.uniform1i(this.discLocations.uTex, 0);
+                    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.tex);
+                    gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+                    gl.bindVertexArray(this.discVAO);
+                    gl.drawElementsInstanced(gl.TRIANGLES, this.discBuffers.indices.length, gl.UNSIGNED_SHORT, 0, this.DISC_INSTANCE_COUNT);
+                }
+                #updateCameraMatrix() {
+                    mat4.targetTo(this.camera.matrix, this.camera.position, [0, 0, 0], this.camera.up);
+                    mat4.invert(this.camera.matrices.view, this.camera.matrix);
+                }
+                #updateProjectionMatrix(gl) {
+                    this.camera.aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+                    const height = this.SPHERE_RADIUS * 0.35, distance = this.camera.position[2];
+                    this.camera.fov = this.camera.aspect > 1 ? 2 * Math.atan(height / distance) : 2 * Math.atan(height / this.camera.aspect / distance);
+                    mat4.perspective(this.camera.matrices.projection, this.camera.fov, this.camera.aspect, this.camera.near, this.camera.far);
+                    mat4.invert(this.camera.matrices.inversProjection, this.camera.matrices.projection);
+                }
+                #onControlUpdate(deltaTime) {
+                    const ts = deltaTime / this.TARGET_FRAME_DURATION + 0.0001;
+                    let damping = 5 / ts, cameraTargetZ = 3 * this.scaleFactor;
+                    const isMoving = this.control.isPointerDown || Math.abs(this.smoothRotationVelocity) > 0.01;
+                    if (isMoving !== this.movementActive) { this.movementActive = isMoving; this.onMovementChange(isMoving); }
+                    if (!this.control.isPointerDown) {
+                        const nearestVertexIndex = this.#findNearestVertexIndex();
+                        const itemIndex = nearestVertexIndex % Math.max(1, this.items.length);
+                        this.onActiveItemChange(itemIndex);
+                        const snapDirection = vec3.normalize(vec3.create(), this.#getVertexWorldPosition(nearestVertexIndex));
+                        this.control.snapTargetDirection = snapDirection;
+                    } else { cameraTargetZ += this.control.rotationVelocity * 80 + 2.5; damping = 7 / ts; }
+                    this.camera.position[2] += (cameraTargetZ - this.camera.position[2]) / damping;
+                    this.#updateCameraMatrix();
+                }
+                #findNearestVertexIndex() {
+                    const n = this.control.snapDirection;
+                    const inv = quat.conjugate(quat.create(), this.control.orientation);
+                    const nt = vec3.transformQuat(vec3.create(), n, inv);
+                    let maxD = -1, nearestVertexIndex;
+                    for (let i = 0; i < this.instancePositions.length; ++i) {
+                        const d = vec3.dot(nt, this.instancePositions[i]);
+                        if (d > maxD) { maxD = d; nearestVertexIndex = i; }
+                    }
+                    return nearestVertexIndex;
+                }
+                #getVertexWorldPosition(index) {
+                    return vec3.transformQuat(vec3.create(), this.instancePositions[index], this.control.orientation);
+                }
+            }
+
+            /* ---- Boot the globe ---- */
+            const PROJECT_ITEMS = [
+                {
+                    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80',
+                    link: 'https://codesuu.tech',
+                    title: 'Collab Coding',
+                    description: 'MERN · WebSockets · Real-time'
+                },
+                {
+                    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80',
+                    link: 'https://skillsense.kushalrongali.online',
+                    title: 'SkillSense AI',
+                    description: 'AI Interviews · Placement Analytics'
+                }
+            ];
+
+            const canvas = document.getElementById('infinite-grid-menu-canvas');
+            if (canvas) {
+                const igmTitle = document.getElementById('igm-title');
+                const igmDesc = document.getElementById('igm-desc');
+                const igmBtn = document.getElementById('igm-btn');
+
+                const sketch = new InfiniteGridMenu(
+                    canvas,
+                    PROJECT_ITEMS,
+                    /* onActiveItemChange */
+                    (index) => {
+                        const item = PROJECT_ITEMS[index];
+                        if (!item) return;
+                        if (igmTitle) { igmTitle.textContent = item.title; }
+                        if (igmDesc) { igmDesc.textContent = item.description; }
+                        if (igmBtn) {
+                            igmBtn.href = item.link || 'https://github.com/kushalrongali';
+                            igmBtn.rel = 'noopener noreferrer';
+                        }
+                    },
+                    /* onMovementChange */
+                    (isMoving) => {
+                        [igmTitle, igmDesc, igmBtn].forEach(el => {
+                            if (!el) return;
+                            el.classList.toggle('active', !isMoving);
+                            el.classList.toggle('inactive', isMoving);
+                        });
+                    },
+                    /* onInit */
+                    (sk) => sk.run()
+                );
+
+                window.addEventListener('resize', () => sketch.resize());
+            }
+
+        })();
+    </script>
+
+    <script>
+        // ============================================================
+        // LightRays — WebGL shader (ported from React Bits / OGL)
+        // ============================================================
+        (function initLightRays() {
+            const canvas = document.getElementById('light-rays-canvas');
+            const hero = document.getElementById('hero');
+            const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
+            if (!gl) { console.warn('WebGL not supported'); return; }
+
+            gl.clearColor(0, 0, 0, 0);
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+            /* ---------- shaders ---------- */
+            const VERT = `
+attribute vec2 position;
+void main(){gl_Position=vec4(position,0.0,1.0);}`;
+
+            const FRAG = `
+precision highp float;
+uniform float iTime;
+uniform vec2  iResolution;
+uniform vec2  rayPos;
+uniform vec2  rayDir;
+uniform vec3  raysColor;
+uniform float raysSpeed;
+uniform float lightSpread;
+uniform float rayLength;
+uniform float fadeDistance;
+uniform vec2  mousePos;
+uniform float mouseInfluence;
+uniform float noiseAmount;
+uniform float distortion;
+
+float noise(vec2 st){
+  return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);
+}
+
+float rayStrength(vec2 src,vec2 dir,vec2 coord,float sA,float sB,float spd){
+  vec2 d=coord-src;
+  vec2 dn=normalize(d);
+  float ca=dot(dn,dir);
+  float da=ca+distortion*sin(iTime*2.0+length(d)*0.01)*0.2;
+  float sf=pow(max(da,0.0),1.0/max(lightSpread,0.001));
+  float dist=length(d);
+  float maxD=iResolution.x*rayLength;
+  float lf=clamp((maxD-dist)/maxD,0.0,1.0);
+  float ff=clamp((iResolution.x*fadeDistance-dist)/(iResolution.x*fadeDistance),0.5,1.0);
+  float bs=clamp(
+    (0.45+0.15*sin(da*sA+iTime*spd))+
+    (0.3 +0.2 *cos(-da*sB+iTime*spd)),0.0,1.0);
+  return bs*lf*ff*sf;
+}
+
+void main(){
+  vec2 coord=vec2(gl_FragCoord.x,iResolution.y-gl_FragCoord.y);
+  vec2 fd=rayDir;
+  if(mouseInfluence>0.0){
+    vec2 mp=mousePos*iResolution.xy;
+    fd=normalize(mix(rayDir,normalize(mp-rayPos),mouseInfluence));
+  }
+  vec4 r1=vec4(1.0)*rayStrength(rayPos,fd,coord,36.2214,21.11349,1.5*raysSpeed);
+  vec4 r2=vec4(1.0)*rayStrength(rayPos,fd,coord,22.3991,18.0234,1.1*raysSpeed);
+  vec4 col=r1*0.5+r2*0.4;
+  if(noiseAmount>0.0){
+    float n=noise(coord*0.01+iTime*0.1);
+    col.rgb*=(1.0-noiseAmount+noiseAmount*n);
+  }
+  float br=1.0-(coord.y/iResolution.y);
+  col.x*=0.1+br*0.8;
+  col.y*=0.3+br*0.6;
+  col.z*=0.5+br*0.5;
+  col.rgb*=raysColor;
+  col.a=clamp(col.r+col.g+col.b,0.0,1.0)*0.9;
+  gl_FragColor=col;
+}`;
+
+            function compile(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+                    console.error(gl.getShaderInfoLog(s));
+                return s;
+            }
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+            gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+
+            /* full-screen triangle */
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+            const posLoc = gl.getAttribLocation(prog, 'position');
+            gl.enableVertexAttribArray(posLoc);
+            gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+            /* uniforms */
+            const U = {};
+            ['iTime', 'iResolution', 'rayPos', 'rayDir', 'raysColor',
+                'raysSpeed', 'lightSpread', 'rayLength', 'fadeDistance',
+                'mousePos', 'mouseInfluence', 'noiseAmount', 'distortion']
+                .forEach(n => U[n] = gl.getUniformLocation(prog, n));
+
+            /* config — matches your electric-blue palette */
+            const CFG = {
+                raysColor: [0.0, 0.67, 1.0],   // #00aaff
+                raysSpeed: 1.2,
+                lightSpread: 0.55,
+                rayLength: 1.5,
+                fadeDistance: 1.2,
+                mouseInfluence: 0.12,
+                noiseAmount: 0.06,
+                distortion: 0.04
+            };
+
+            let W = 0, H = 0;
+            function resize() {
+                const dpr = Math.min(devicePixelRatio, 2);
+                W = hero.clientWidth; H = hero.clientHeight;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            /* mouse tracking */
+            let mx = 0.5, my = 0.5, smx = 0.5, smy = 0.5;
+            window.addEventListener('mousemove', e => {
+                const r = hero.getBoundingClientRect();
+                mx = (e.clientX - r.left) / r.width;
+                my = (e.clientY - r.top) / r.height;
+            });
+
+            /* render loop */
+            let start = performance.now();
+            function frame(ts) {
+                const t = (ts - start) * 0.001;
+                smx += (mx - smx) * 0.08; smy += (my - smy) * 0.08;
+
+                const dpr = Math.min(devicePixelRatio, 2);
+                const cw = canvas.width, ch = canvas.height;
+
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                gl.uniform1f(U.iTime, t);
+                gl.uniform2f(U.iResolution, cw, ch);
+                /* top-center origin */
+                gl.uniform2f(U.rayPos, cw * 0.5, -0.2 * ch);
+                gl.uniform2f(U.rayDir, 0, 1);
+                gl.uniform3fv(U.raysColor, CFG.raysColor);
+                gl.uniform1f(U.raysSpeed, CFG.raysSpeed);
+                gl.uniform1f(U.lightSpread, CFG.lightSpread);
+                gl.uniform1f(U.rayLength, CFG.rayLength);
+                gl.uniform1f(U.fadeDistance, CFG.fadeDistance);
+                gl.uniform2f(U.mousePos, smx, smy);
+                gl.uniform1f(U.mouseInfluence, CFG.mouseInfluence);
+                gl.uniform1f(U.noiseAmount, CFG.noiseAmount);
+                gl.uniform1f(U.distortion, CFG.distortion);
+                gl.drawArrays(gl.TRIANGLES, 0, 3);
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        })();
+
+        // ============================================================
+        // Cursor
+        const cur = document.getElementById('cursor');
+        const ring = document.getElementById('cursor-ring');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        if (cur && ring && window.matchMedia('(pointer:fine)').matches) {
+            document.addEventListener('mousemove', e => {
+                mx = e.clientX;
+                my = e.clientY;
+                cur.style.left = mx + 'px';
+                cur.style.top = my + 'px';
+            });
+            function animRing() {
+                rx += (mx - rx) * 0.1;
+                ry += (my - ry) * 0.1;
+                ring.style.left = rx + 'px';
+                ring.style.top = ry + 'px';
+                requestAnimationFrame(animRing);
+            }
+            animRing();
+        }
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const p = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progress').style.width = p + '%';
+            document.getElementById('back-top').classList.toggle('show', window.scrollY > 400);
+        });
+
+        // Typing animation
+        const words = ['AI Specialist', 'MERN Stack Developer', 'Java Enthusiast', 'Problem Solver', 'Tech Explorer'];
+        let wi = 0, ci = 0, del = false;
+        const el = document.getElementById('typed-text');
+        function type() {
+            const word = words[wi];
+            if (!del) {
+                el.textContent = word.slice(0, ++ci);
+                if (ci === word.length) { del = true; setTimeout(type, 2000); return }
+            } else {
+                el.textContent = word.slice(0, --ci);
+                if (ci === 0) { del = false; wi = (wi + 1) % words.length }
+            }
+            setTimeout(type, del ? 60 : 90);
+        }
+        type();
+
+        // Particles
+        const pc = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.setProperty('--dur', (12 + Math.random() * 15) + 's');
+            p.style.setProperty('--delay', (-Math.random() * 20) + 's');
+            p.style.setProperty('--drift', ((Math.random() - 0.5) * 80) + 'px');
+            p.style.left = Math.random() * 100 + 'vw';
+            pc.appendChild(p);
+        }
+
+        // Fade-in observer
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+        // Counter animation
+        function animCount(el, target) {
+            let cur = 0; const dur = 1500; const start = Date.now();
+            const t = () => {
+                const p = Math.min((Date.now() - start) / dur, 1);
+                el.textContent = Math.round(p * target);
+                if (p < 1) requestAnimationFrame(t);
+            };
+            requestAnimationFrame(t);
+        }
+        const cObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('[data-target]').forEach(el => {
+                        animCount(el, +el.dataset.target);
+                    });
+                    cObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.stats-grid').forEach(el => cObs.observe(el));
+
+        // GitHub API
+        fetch('https://api.github.com/users/kushalrongali')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('gh-repos').textContent = d.public_repos || '—';
+                document.getElementById('gh-followers').textContent = d.followers || '—';
+                document.getElementById('gh-following').textContent = d.following || '—';
+            }).catch(() => { });
+        fetch('https://api.github.com/users/kushalrongali/repos?per_page=100')
+            .then(r => r.json())
+            .then(repos => {
+                if (!Array.isArray(repos)) return;
+                const stars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+                document.getElementById('gh-stars').textContent = stars;
+            }).catch(() => { });
+
+        // Contact form
+        function handleContact(e) {
+            e.preventDefault();
+            const name = document.getElementById('cf-name').value.trim();
+            const email = document.getElementById('cf-email').value.trim();
+            const msg = document.getElementById('cf-msg').value.trim();
+            if (!name || !email || !msg) return;
+            const s = document.getElementById('cf-status');
+            s.style.display = 'block';
+            const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+            window.location.href = `mailto:kushalrongali8@gmail.com?subject=${subject}&body=${body}`;
+            document.getElementById('cf-name').value = '';
+            document.getElementById('cf-email').value = '';
+            document.getElementById('cf-msg').value = '';
+            setTimeout(() => s.style.display = 'none', 4000);
+        }
+
+        // ============================================================
+        // OrbitImages — vanilla JS port (React Bits / motion)
+        // Two concentric elliptical orbits with SVG tech badges
+        // ============================================================
+        (function initOrbitImages() {
+            const INNER = [
+                { label: 'JavaScript', color: '#f7df1e', svg: '<rect x="3" y="3" width="18" height="18" rx="2" fill="#f7df1e" opacity=".15"/><path d="M14.5 15.5c0 1.1-.8 1.8-2 1.8-1.1 0-1.8-.6-2.1-1.4l1-.6c.2.5.6.8 1.1.8.5 0 .8-.2.8-.6 0-.5-.3-.7-1-.9l-.3-.1c-1-.4-1.7-1-1.7-2.1 0-1 .8-1.8 2-1.8.9 0 1.5.3 1.9 1.1l-1 .6c-.2-.4-.5-.6-1-.6-.5 0-.8.3-.8.7 0 .4.3.6.9.9l.3.1c1.2.5 1.9 1.1 1.9 2.1z" fill="#f7df1e"/>' },
+                { label: 'React.js', color: '#61dafb', svg: '<circle cx="12" cy="12" r="2" fill="#61dafb"/><ellipse cx="12" cy="12" rx="9" ry="3.2" stroke="#61dafb" stroke-width="1.2" fill="none"/><ellipse cx="12" cy="12" rx="9" ry="3.2" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.2" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(120 12 12)"/>' },
+                { label: 'Node.js', color: '#68a063', svg: '<polygon points="12,3 20.5,8 20.5,16 12,21 3.5,16 3.5,8" stroke="#68a063" stroke-width="1.3" fill="#68a063" fill-opacity=".15"/><text x="8" y="16" font-size="7" fill="#68a063" font-family="monospace" font-weight="bold">JS</text>' },
+                { label: 'MongoDB', color: '#4DB33D', svg: '<path d="M12 3c-3 0-4 3.5-4 7.5 0 3 1.2 5.5 3 7l1 2.5 1-2.5c1.8-1.5 3-4 3-7C16 6.5 15 3 12 3zm0 9.5a2 2 0 110-4 2 2 0 010 4z" fill="#4DB33D"/>' },
+                { label: 'TypeScript', color: '#3178c6', svg: '<rect x="3" y="3" width="18" height="18" rx="2" fill="#3178c6"/><path d="M8 12h8M12 8v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' },
+                { label: 'Docker', color: '#2496ed', svg: '<rect x="2" y="11" width="20" height="7" rx="2" fill="#2496ed" opacity=".2" stroke="#2496ed" stroke-width="1"/><rect x="4" y="13" width="3" height="3" rx=".5" fill="#2496ed"/><rect x="8.5" y="13" width="3" height="3" rx=".5" fill="#2496ed"/><rect x="13" y="13" width="3" height="3" rx=".5" fill="#2496ed"/><path d="M19 12c0-1.5-1-2.5-2.5-2.5H15" stroke="#2496ed" stroke-width="1.2" fill="none"/>' },
+                { label: 'Python', color: '#ffd43b', svg: '<path d="M12 3c-2.2 0-3.5 1-3.5 2.5v1.5H12v.5H7.5C6 7.5 5 8.8 5 10.5S6 13.5 7.5 13.5H9v-1.5H7.5c-.6 0-1-.4-1-1s.4-1 1-1H12c1.9 0 3.5-1.2 3.5-3V5.5C15.5 4 14.2 3 12 3zm-1 1.5a.75.75 0 110 1.5.75.75 0 010-1.5z" fill="#3776ab"/><path d="M12 21c2.2 0 3.5-1 3.5-2.5v-1.5H12v-.5h4.5c1.5 0 2.5-1.3 2.5-3S17 11 15.5 11H15v1.5h1.5c.6 0 1 .4 1 1s-.4 1-1 1H12c-1.9 0-3.5 1.2-3.5 3v2c0 1.5 1.3 2.5 3.5 2.5zm1-1.5a.75.75 0 110-1.5.75.75 0 010 1.5z" fill="#ffd43b"/>' },
+                { label: 'Express', color: '#aaa', svg: '<path d="M4 8h16M4 12h10M4 16h13" stroke="#aaa" stroke-width="1.8" stroke-linecap="round"/>' },
+            ];
+
+            const OUTER = [
+                { label: 'AWS', color: '#ff9900', svg: '<path d="M7 13c-.5-1.5-.5-4 2-5.5M17 13c.5-1.5.5-4-2-5.5M5 15l2-1.5 2 1.5M15 15l2-1.5 2 1.5" stroke="#ff9900" stroke-width="1.3" stroke-linecap="round" fill="none"/><rect x="8" y="14" width="8" height="3.5" rx="1" fill="#ff9900" opacity=".7"/>' },
+                { label: 'MySQL', color: '#00758f', svg: '<ellipse cx="12" cy="7.5" rx="7" ry="2.5" fill="#00758f" opacity=".8"/><path d="M5 7.5v9c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-9" fill="#00758f" opacity=".35" stroke="#00758f" stroke-width="1"/>' },
+                { label: 'Git', color: '#f05032', svg: '<circle cx="6" cy="6" r="2.2" fill="#f05032"/><circle cx="18" cy="6" r="2.2" fill="#f05032"/><circle cx="12" cy="18" r="2.2" fill="#f05032"/><path d="M6 8.2V10a6 6 0 006 6h0M18 8.2V10a6 6 0 01-6 6" stroke="#f05032" stroke-width="1.4" fill="none"/>' },
+                { label: 'Tailwind', color: '#38bdf8', svg: '<path d="M12 6.5c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 2-1.7 3.2-1.3.7.2 1.2.7 1.7 1.3.8.9 1.8 1.9 3.6 1.9 2.4 0 3.9-1.2 4.5-3.6-.9 1.2-2 1.7-3.2 1.3-.7-.2-1.2-.7-1.7-1.3C14.8 7.5 13.8 6.5 12 6.5zm-4.5 5.5c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 2-1.7 3.2-1.3.7.2 1.2.7 1.7 1.3.8.9 1.8 1.9 3.6 1.9 2.4 0 3.9-1.2 4.5-3.6-.9 1.2-2 1.7-3.2 1.3-.7-.2-1.2-.7-1.7-1.3-.8-.9-1.8-1.9-3.6-1.9z" fill="#38bdf8"/>' },
+                { label: 'Socket.io', color: '#e0e0e0', svg: '<circle cx="12" cy="12" r="8.5" stroke="#e0e0e0" stroke-width="1.2" fill="none"/><path d="M9 12h3l-2-3.5 6 3.5h-3l2 3.5z" fill="#e0e0e0"/>' },
+                { label: 'REST API', color: '#0af', svg: '<rect x="3" y="9" width="18" height="6" rx="1.5" fill="none" stroke="#0af" stroke-width="1.2"/><path d="M7 12h10M14 9.5v5M10 9.5v5" stroke="#0af" stroke-width="1" stroke-linecap="round"/>' },
+                { label: 'GitHub', color: '#e8e8e8', svg: '<path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6.9.1 1.4.9 1.4.9.8 1.4 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.2-.2-4.5-1.1-4.5-4.8 0-1 .4-1.9.9-2.6-.1-.2-.4-1.2.1-2.5 0 0 .8-.2 2.7 1 .8-.2 1.6-.3 2.5-.3.8 0 1.7.1 2.5.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.5.6.7.9 1.5.9 2.6 0 3.7-2.3 4.5-4.5 4.8.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z" fill="#e8e8e8"/>' },
+                { label: 'Vercel', color: '#fff', svg: '<path d="M12 4L22 20H2L12 4z" fill="#fff"/>' },
+                { label: 'Postman', color: '#ef5b25', svg: '<circle cx="12" cy="12" r="8" fill="#ef5b25" opacity=".15" stroke="#ef5b25" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="#ef5b25"/><path d="M12 8v4l3 2" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>' },
+                { label: 'CI/CD', color: '#a78bfa', svg: '<path d="M5 12h14M5 12l3.5-3.5M5 12l3.5 3.5M19 12l-3.5-3.5M19 12l-3.5 3.5" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' },
+                { label: 'Java', color: '#f89820', svg: '<path d="M10 18s-1.5.5 1 1c3.5.5 5.5-.5 3-1M9 16s-1 .5 1.5.8c3 .5 5-.5 2.5-.8" stroke="#f89820" stroke-width=".8" fill="none"/><path d="M13.5 4c-.8 2.5 1 3.5 1 5s-1 2-1 3.5c.7-2-.3-3 0-4.5S14.5 5.5 13.5 4z" fill="#f89820"/>' },
+                { label: 'SQL', color: '#4fc3f7', svg: '<ellipse cx="12" cy="8" rx="7" ry="2.5" fill="none" stroke="#4fc3f7" stroke-width="1.2"/><path d="M5 8v8c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V8" fill="none" stroke="#4fc3f7" stroke-width="1.2"/><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" fill="none" stroke="#4fc3f7" stroke-width="1"/>' },
+            ];
+
+            const CATEGORIES = [
+                { label: 'Languages', color: 'rgba(247,223,30,0.7)' },
+                { label: 'Frontend', color: 'rgba(97,218,251,0.7)' },
+                { label: 'Backend', color: 'rgba(104,160,99,0.7)' },
+                { label: 'Database', color: 'rgba(77,179,61,0.7)' },
+                { label: 'Cloud', color: 'rgba(255,153,0,0.7)' },
+                { label: 'Tools', color: 'rgba(232,232,232,0.7)' },
+            ];
+            const legend = document.getElementById('skills-legend');
+            if (legend) {
+                CATEGORIES.forEach(c => {
+                    const p = document.createElement('span');
+                    p.className = 'legend-pill';
+                    p.textContent = c.label;
+                    p.style.color = c.color;
+                    p.style.borderColor = c.color;
+                    legend.appendChild(p);
+                });
+            }
+
+            const scene = document.getElementById('orbit-scene');
+            const pathSVG = document.getElementById('orbit-paths-svg');
+            if (!scene || !pathSVG) return;
+
+            const NS = 'http://www.w3.org/2000/svg';
+
+            function ellipsePath(cx, cy, rx, ry) {
+                return `M${cx - rx} ${cy} A${rx} ${ry} 0 1 0 ${cx + rx} ${cy} A${rx} ${ry} 0 1 0 ${cx - rx} ${cy}`;
+            }
+
+            function makeSVGPath(d) {
+                const p = document.createElementNS(NS, 'path');
+                p.setAttribute('d', d);
+                pathSVG.appendChild(p);
+                return p;
+            }
+
+            function drawGuide(cx, cy, rx, ry) {
+                const e = document.createElementNS(NS, 'ellipse');
+                e.setAttribute('cx', cx); e.setAttribute('cy', cy);
+                e.setAttribute('rx', rx); e.setAttribute('ry', ry);
+                e.setAttribute('fill', 'none');
+                e.setAttribute('stroke', 'rgba(0,170,255,0.1)');
+                e.setAttribute('stroke-width', '1');
+                e.setAttribute('stroke-dasharray', '5 5');
+                pathSVG.appendChild(e);
+            }
+
+            let items = [];
+            let animId = null;
+            let startTime = null;
+            const ITEM_SZ = 72;
+
+            function build() {
+                scene.querySelectorAll('.orbit-item-wrap').forEach(e => e.remove());
+                pathSVG.innerHTML = '';
+                items = [];
+
+                const W = scene.offsetWidth || 900;
+                const H = scene.offsetHeight || 420;
+                const cx = W / 2, cy = H / 2;
+                const sc = Math.min(W / 900, 1);
+
+                const rX1 = Math.round(190 * sc), rY1 = Math.round(80 * sc);
+                const rX2 = Math.round(370 * sc), rY2 = Math.round(155 * sc);
+
+                pathSVG.setAttribute('viewBox', `0 0 ${W} ${H}`);
+                drawGuide(cx, cy, rX1, rY1);
+                drawGuide(cx, cy, rX2, rY2);
+
+                function addOrbit(skills, rx, ry, dur, rev) {
+                    const d = ellipsePath(cx, cy, rx, ry);
+                    const pel = makeSVGPath(d);
+                    pel.setAttribute('fill', 'none'); pel.setAttribute('stroke', 'none');
+                    const tLen = pel.getTotalLength();
+
+                    skills.forEach((sk, i) => {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'orbit-item-wrap';
+                        wrap.style.width = '0'; wrap.style.height = '0';
+
+                        const badge = document.createElement('div');
+                        badge.className = 'orbit-badge';
+                        badge.style.marginLeft = (-ITEM_SZ / 2) + 'px';
+                        badge.style.marginTop = (-ITEM_SZ / 2) + 'px';
+                        badge.style.borderColor = sk.color + '44';
+                        badge.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${sk.svg}</svg><span style="font-size:0.55rem;color:${sk.color};opacity:.9">${sk.label}</span>`;
+                        wrap.appendChild(badge);
+                        scene.appendChild(wrap);
+
+                        const baseOff = (i / skills.length);
+                        items.push({ el: wrap, pel, tLen, baseOff, dur, rev });
+                    });
+                }
+
+                addOrbit(INNER, rX1, rY1, 22, false);
+                addOrbit(OUTER, rX2, rY2, 40, true);
+            }
+
+            function frame(ts) {
+                if (!startTime) startTime = ts;
+                const t = (ts - startTime) / 1000;
+                items.forEach(item => {
+                    const prog = (t / item.dur) * (item.rev ? -1 : 1);
+                    const raw = (prog + item.baseOff) * item.tLen;
+                    const dist = ((raw % item.tLen) + item.tLen) % item.tLen;
+                    const pt = item.pel.getPointAtLength(dist);
+                    item.el.style.transform = `translate(${pt.x}px,${pt.y}px)`;
+                });
+                animId = requestAnimationFrame(frame);
+            }
+
+            /* pause off-screen */
+            const skillSection = document.getElementById('skills');
+            new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    if (!animId) animId = requestAnimationFrame(frame);
+                } else {
+                    if (animId) { cancelAnimationFrame(animId); animId = null; }
+                }
+            }, { threshold: 0.05 }).observe(skillSection);
+
+            let rt;
+            window.addEventListener('resize', () => {
+                clearTimeout(rt);
+                rt = setTimeout(() => {
+                    if (animId) { cancelAnimationFrame(animId); animId = null; startTime = null; }
+                    build();
+                    animId = requestAnimationFrame(frame);
+                }, 200);
+            });
+
+            build();
+            animId = requestAnimationFrame(frame);
+        })();
+    </script>
+
+    <!-- ============================================================
+     LogoLoop — vanilla JS port
+     ============================================================ -->
+    <script>
+        (function initLogoLoop() {
+
+            /* ---- logo data: inline SVG icons for each tech ---- */
+            const LOGOS = [
+                {
+                    title: 'React',
+                    color: '#61dafb',
+                    svg: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2.2" fill="#61dafb"/><ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" stroke-width="1.2" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(120 12 12)"/></svg>`
+                },
+                {
+                    title: 'TypeScript',
+                    color: '#3178c6',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="3" fill="#3178c6"/><path d="M5 9.5h8M9 9.5V19" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M13 16.5c0 1.4 1 2.5 2.5 2.5s2.5-1 2.5-2.5-1-1.5-2.5-2-2.5-.9-2.5-2.5 1-2.5 2.5-2.5 2.5 1 2.5 2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>`
+                },
+                {
+                    title: 'Node.js',
+                    color: '#68a063',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L3 7v10l9 5 9-5V7z" stroke="#68a063" stroke-width="1.4" fill="#68a063" fill-opacity=".12"/><path d="M8 11v2c0 2 1.5 3 4 3s4-1 4-3v-1c0-1.5-1.5-2-4-2s-4-.5-4-2V9c0-1.5 1.5-2.5 4-2.5S16 7.5 16 9" stroke="#68a063" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`
+                },
+                {
+                    title: 'MongoDB',
+                    color: '#4db33d',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-3.5 0-5 3-5 7.5 0 3.5 1.5 6.5 4 8.5l1 2.5 1-2.5c2.5-2 4-5 4-8.5C17 6 15.5 3 12 3z" fill="#4db33d" fill-opacity=".25" stroke="#4db33d" stroke-width="1.3"/><circle cx="12" cy="10.5" r="2" fill="#4db33d"/></svg>`
+                },
+                {
+                    title: 'Docker',
+                    color: '#2496ed',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="13" width="20" height="6" rx="2" fill="#2496ed" fill-opacity=".18" stroke="#2496ed" stroke-width="1.2"/><rect x="4" y="14.5" width="3" height="3" rx=".6" fill="#2496ed"/><rect x="8.5" y="14.5" width="3" height="3" rx=".6" fill="#2496ed"/><rect x="13" y="14.5" width="3" height="3" rx=".6" fill="#2496ed"/><path d="M20 13c0-2-1.5-3-3-3h-1.5" stroke="#2496ed" stroke-width="1.3" fill="none" stroke-linecap="round"/><circle cx="20" cy="10" r="1.2" fill="#2496ed"/></svg>`
+                },
+                {
+                    title: 'Python',
+                    color: '#ffd43b',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-2.5 0-4 1-4 3v2h4v1H7C5.5 8 4 9.5 4 11.5s1.5 3.5 3 3.5H9V13.5H7.5C7 13.5 6.5 13 6.5 12.5s.5-1 1-1H12c2 0 4-1.5 4-3.5V5c0-2-1.5-3-4-3zm-1 2a.75.75 0 110 1.5A.75.75 0 0111 4z" fill="#3776ab"/><path d="M12 22c2.5 0 4-1 4-3v-2h-4v-1h5c1.5 0 3-1.5 3-3.5S18.5 9 17 9H15v1.5h1.5c.5 0 1 .5 1 1s-.5 1-1 1H12c-2 0-4 1.5-4 3.5v2c0 2 1.5 3 4 3zm1-2a.75.75 0 110-1.5.75.75 0 010 1.5z" fill="#ffd43b"/></svg>`
+                },
+                {
+                    title: 'OpenAI',
+                    color: '#74aa9c',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 10.5a4.5 4.5 0 00-2.7-4.1A4.5 4.5 0 0012 3.5a4.5 4.5 0 00-4.3 3.2A4.5 4.5 0 003 10.5a4.5 4.5 0 002.7 4.1A4.5 4.5 0 0012 20.5a4.5 4.5 0 004.3-3.2A4.5 4.5 0 0021 10.5z" stroke="#74aa9c" stroke-width="1.3" fill="#74aa9c" fill-opacity=".12"/><path d="M9 10.5l1.5 3h3l1.5-3-1.5-3h-3z" stroke="#74aa9c" stroke-width="1.2" fill="none"/></svg>`
+                },
+                {
+                    title: 'AWS',
+                    color: '#ff9900',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 13c-.5-2 0-5 2.5-6.5M17 13c.5-2 0-5-2.5-6.5" stroke="#ff9900" stroke-width="1.4" stroke-linecap="round" fill="none"/><path d="M5 15.5l2.5-1.5 2.5 1.5M14 15.5l2.5-1.5 2.5 1.5" stroke="#ff9900" stroke-width="1.3" stroke-linecap="round" fill="none"/><rect x="7" y="16.5" width="10" height="3.5" rx="1.2" fill="#ff9900" fill-opacity=".75"/></svg>`
+                },
+                {
+                    title: 'Socket.io',
+                    color: '#e0e0e0',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#e0e0e0" stroke-width="1.3" fill="none"/><path d="M9.5 12h3.5L11 8l6 4h-3.5L15 16z" fill="#e0e0e0"/></svg>`
+                },
+                {
+                    title: 'Git',
+                    color: '#f05032',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="2.2" fill="#f05032"/><circle cx="18" cy="6" r="2.2" fill="#f05032"/><circle cx="12" cy="18" r="2.2" fill="#f05032"/><path d="M6 8.2V10a6 6 0 006 6M18 8.2V10a6 6 0 01-6 6" stroke="#f05032" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`
+                },
+                {
+                    title: 'Tailwind',
+                    color: '#38bdf8',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6c-2.7 0-4.4 1.4-5 4 1-1.3 2.2-1.8 3.5-1.5.8.2 1.3.8 1.9 1.5.9 1 2 2.1 4.1 2.1 2.7 0 4.4-1.4 5-4-1 1.3-2.2 1.8-3.5 1.5-.8-.2-1.3-.8-1.9-1.5C15.2 7.1 14.1 6 12 6zM7 12c-2.7 0-4.4 1.4-5 4 1-1.3 2.2-1.8 3.5-1.5.8.2 1.3.8 1.9 1.5.9 1 2 2.1 4.1 2.1 2.7 0 4.4-1.4 5-4-1 1.3-2.2 1.8-3.5 1.5-.8-.2-1.3-.8-1.9-1.5C10.2 13.1 9.1 12 7 12z" fill="#38bdf8"/></svg>`
+                },
+                {
+                    title: 'Express',
+                    color: '#aaaaaa',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h10M4 17h13" stroke="#aaa" stroke-width="1.8" stroke-linecap="round"/></svg>`
+                },
+                {
+                    title: 'MySQL',
+                    color: '#00758f',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="7" rx="7.5" ry="2.5" fill="#00758f" fill-opacity=".75"/><path d="M4.5 7v10c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V7" fill="#00758f" fill-opacity=".2" stroke="#00758f" stroke-width="1.2"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5S19.5 13.4 19.5 12" fill="none" stroke="#00758f" stroke-width="1"/></svg>`
+                },
+                {
+                    title: 'Vercel',
+                    color: '#ffffff',
+                    svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L23 20H1L12 3z" fill="#fff"/></svg>`
+                },
+            ];
+
+            const SMOOTH_TAU = 0.25;
+            const SPEED = 80; // px / sec
+            const GAP = 52;
+
+            const track = document.getElementById('logoloop-track');
+            if (!track) return;
+
+            /* Build two copies of the list (will add more dynamically) */
+            let copyCount = 3;
+            let seqWidth = 0;
+
+            function buildItem(logo, key) {
+                const li = document.createElement('li');
+                li.className = 'logoloop__item';
+                li.setAttribute('role', 'listitem');
+                li.title = logo.title;
+                li.innerHTML = logo.svg + `<span>${logo.title}</span>`;
+                return li;
+            }
+
+            function buildCopy(copyIndex) {
+                const ul = document.createElement('ul');
+                ul.className = 'logoloop__list';
+                ul.setAttribute('role', 'list');
+                if (copyIndex > 0) ul.setAttribute('aria-hidden', 'true');
+                LOGOS.forEach((logo, i) => ul.appendChild(buildItem(logo, `${copyIndex}-${i}`)));
+                return ul;
+            }
+
+            function populate() {
+                track.innerHTML = '';
+                for (let i = 0; i < copyCount; i++) track.appendChild(buildCopy(i));
+            }
+            populate();
+
+            /* measure first list width */
+            function measureAndAdjust() {
+                const first = track.querySelector('.logoloop__list');
+                if (!first) return;
+                seqWidth = Math.ceil(first.getBoundingClientRect().width);
+                if (seqWidth <= 0) return;
+                const containerWidth = track.parentElement?.clientWidth ?? window.innerWidth;
+                const needed = Math.ceil(containerWidth / seqWidth) + 3;
+                if (needed > copyCount) {
+                    copyCount = needed;
+                    populate();
+                    seqWidth = Math.ceil(track.querySelector('.logoloop__list').getBoundingClientRect().width);
+                }
+            }
+            setTimeout(measureAndAdjust, 60); // after paint
+            window.addEventListener('resize', () => { clearTimeout(window._llrt); window._llrt = setTimeout(measureAndAdjust, 200); });
+
+            /* animation */
+            let offset = 0;
+            let velocity = 0;
+            let lastTs = null;
+            let isHovered = false;
+
+            track.addEventListener('mouseenter', () => { isHovered = true; });
+            track.addEventListener('mouseleave', () => { isHovered = false; });
+
+            function frame(ts) {
+                if (lastTs === null) lastTs = ts;
+                const dt = Math.max(0, ts - lastTs) / 1000;
+                lastTs = ts;
+
+                const target = isHovered ? 0 : SPEED;
+                const ease = 1 - Math.exp(-dt / SMOOTH_TAU);
+                velocity += (target - velocity) * ease;
+
+                if (seqWidth > 0) {
+                    offset = ((offset + velocity * dt) % seqWidth + seqWidth) % seqWidth;
+                    track.style.transform = `translate3d(${-offset}px,0,0)`;
+                }
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+
+        })();
+    </script>
+</body>
+
+</html>
